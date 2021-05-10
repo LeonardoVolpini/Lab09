@@ -28,7 +28,25 @@ public class FXMLController {
 
     @FXML
     void doCalcolaConfini(ActionEvent event) {
-
+    	this.txtResult.clear();
+    	String anno= this.txtAnno.getText();
+    	if (anno.isEmpty()) {
+    		this.txtResult.setText("Nessun anno inserito");
+    		return;
+    	}
+    	int year;
+    	try {
+    		year=Integer.parseInt(anno);
+    	} catch(NumberFormatException e) {
+    		this.txtResult.setText("Inserire un valore numerico come anno");
+    		return;
+    	}
+    	if (year>2016 || year<1816) {
+    		this.txtResult.setText("Errore. L'anno deve essere compreso tra 1816 e 2016");
+    		return;
+    	}
+    	this.model.creaGrafo(year);
+    	this.txtResult.setText(model.stampaStatiConGrado());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

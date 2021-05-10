@@ -9,6 +9,8 @@ public class TestModel {
 		System.out.println("Creo il grafo relativo al 2000");
 		model.creaGrafo(2000);
 		
+		System.out.println(model.stampaStatiConGrado());
+		
 //		List<Country> countries = model.getCountries();
 //		System.out.format("Trovate %d nazioni\n", countries.size());
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jgrapht.Graphs;
+import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
@@ -32,6 +33,25 @@ public class Model {
 		System.out.println("Grafo Creato!");
 		System.out.println("# vertici: "+grafo.vertexSet().size());
 		System.out.println("# archi: "+grafo.edgeSet().size());
+		
+	}
+	
+	public String stampaStatiConGrado() { //TODO
+		String s="";
+		for (Country c : this.grafo.vertexSet()) {
+			s += c.toString()+grafo.degreeOf(c)+"\n";
+		}
+		return s;
 	}
 
+	public int numComponentiConnesse() {
+		int tot=0;
+		ConnectivityInspector<Country,DefaultEdge> ci = new ConnectivityInspector(grafo);
+		for (Country c : grafo.vertexSet()) {
+			
+		}
+		
+		return tot;
+	}
+	
 }
