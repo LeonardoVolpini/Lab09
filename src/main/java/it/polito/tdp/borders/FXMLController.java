@@ -4,9 +4,11 @@ package it.polito.tdp.borders;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.borders.model.Country;
 import it.polito.tdp.borders.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -22,6 +24,9 @@ public class FXMLController {
 
     @FXML // fx:id="txtAnno"
     private TextField txtAnno; // Value injected by FXMLLoader
+    
+    @FXML
+    private ComboBox<Country> cmbState;
 
     @FXML // fx:id="txtResult"
     private TextArea txtResult; // Value injected by FXMLLoader
@@ -48,15 +53,21 @@ public class FXMLController {
     	this.model.creaGrafo(year);
     	this.txtResult.setText(model.stampaStatiConGrado());
     }
+    
+    @FXML
+    void doStatiRaggiungibili(ActionEvent event) {
+
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert txtAnno != null : "fx:id=\"txtAnno\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
-
+        assert cmbState != null : "fx:id=\"cmbState\" was not injected: check your FXML file 'Scene.fxml'.";
     }
     
     public void setModel(Model model) {
     	this.model = model;
+    	this.cmbState.getItems().addAll(model.getAllStates());
     }
 }
